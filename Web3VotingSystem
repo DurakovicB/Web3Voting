@@ -1,0 +1,26 @@
+pragma solidity ^0.8.7;
+
+contract Web3VotingSystem
+{
+    string[] public candidateNames;
+    mapping(string=>uint256) public candidateCode;
+    mapping(string=>uint256) public numberOfVotes;
+
+    constructor(string[] memory _stringParam)  {
+        candidateNames = _stringParam;
+    }
+
+    function validCandidate(uint256 selectedCandidateCode) view public returns (bool)
+    {
+        for(uint i=0;i<candidateNames.list;i++)
+        {
+            if(candidateNames[i]==candidateCode[selectedCandidateCode])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+}
