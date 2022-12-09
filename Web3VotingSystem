@@ -32,6 +32,9 @@ contract Web3VotingSystem
     function numberOfVotesFor(uint256 candidate) view public returns (uint256) {
     require(validCandidate(candidate));
     return numberOfVotes[candidate];
-  }  
-
+    }  
+    function getCandidates() constant returns (string[])
+    {
+        return candidateNames;
+    }
 }
