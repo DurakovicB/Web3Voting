@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
 contract Web3VotingSystem
@@ -33,7 +34,7 @@ contract Web3VotingSystem
     require(validCandidate(candidate));
     return numberOfVotes[candidate];
     }  
-    function getCandidates() constant returns (string[])
+    function getCandidates() public view returns  ( string[] memory)
     {
         return candidateNames;
     }
