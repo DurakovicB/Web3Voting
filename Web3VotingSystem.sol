@@ -9,6 +9,11 @@ contract Web3VotingSystem
 
     constructor(string[] memory _stringParam)  {
         candidateNames = _stringParam;
+        uint temp=0;
+        for(uint i=0;i<candidateNames.length;i++ )
+        {
+            candidateCode[candidateNames[i]]=temp++;
+        }
     }
 
 
@@ -33,9 +38,24 @@ contract Web3VotingSystem
     function numberOfVotesFor(uint256 candidate) view public returns (uint256) {
     require(validCandidate(candidate));
     return numberOfVotes[candidate];
-    }  
+    } 
+
     function getCandidates() public view returns  ( string[] memory)
     {
         return candidateNames;
     }
+    function currentWinner() public view returns (string memory)
+    {
+        uint256 maxVotes=0;
+        string memory winnerName="NaN";
+        for (uint256 i = 0; i < candidateNames.length; i++) {
+            uint temp=numberOfVotes[candidateCode[candidateNames[i]]];
+            if ( temp> maxVotes) {
+                maxVotes = temp;
+                winnerName=candidateNames[i] ;
+            }
+        }
+        return winnerName; 
+    }
+    //////misc
 }
